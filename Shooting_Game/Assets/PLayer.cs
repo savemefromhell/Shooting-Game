@@ -28,13 +28,7 @@ public class PLayer : MonoBehaviour
         Vector2 AddVector = new Vector2(key, Rkey);
         if (maxSpeed < speedx)
         {
-            if(AddVector.x*PlayerVector.x+ AddVector.y * PlayerVector.y<0)
-            {
-                this.rigid2D.AddForce(AddVector * Force);
-
-            }
-            else
-                this.rigid2D.AddForce(-PlayerVector * Force / 2);
+                this.rigid2D.AddForce(-PlayerVector * Force );
         }
         else
         {
