@@ -5,8 +5,8 @@ using UnityEngine;
 public class PLayer : MonoBehaviour
 {
     Rigidbody2D rigid2D;
-    //float maxSpeed = 2.0f;
-    float Force = 30.0f;
+    float maxSpeed = 0.5f;
+    float Force = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +23,29 @@ public class PLayer : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow)) Rkey = 1;
         if (Input.GetKey(KeyCode.LeftArrow)) Rkey = -1;
 
-        //float speedx = Mathf.Abs(this.rigid2D.velocity.x);
+        Vector2 PlayerVector = new Vector2(this.rigid2D.velocity.x,this.rigid2D.velocity.y);
+        float speedx = PlayerVector.magnitude;
+        Vector2 AddVector = new Vector2(key, Rkey);
+        if (maxSpeed < speedx)
+        {
+            if(AddVector.x*PlayerVector.x+ AddVector.y * PlayerVector.y<0)
+            {
+                this.rigid2D.AddForce(AddVector * Force);
 
+            }
+            else
+                this.rigid2D.AddForce(-PlayerVector * Force / 2);
+        }
+        else
+        {
+            if(key==0&&Rkey==0)
+            {
+                this.rigid2D.AddForce(-PlayerVector * Force/2);
+            }
+            this.rigid2D.AddForce(AddVector * Force);
+ 
+         }
 
-        this.rigid2D.AddForce(transform.up * key * Force);
-        this.rigid2D.AddForce(transform.right * Rkey * Force);
 
        
     }
