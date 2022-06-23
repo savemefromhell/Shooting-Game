@@ -26,8 +26,8 @@ public class PLayerScript : MonoBehaviour
 
 
 
-         this.rigid2D.AddForce(transform.up * key * Force);
-         this.rigid2D.AddForce(transform.right * Rkey * Force);
+        this.rigid2D.AddForce(transform.up * key * Force);
+        this.rigid2D.AddForce(transform.right * Rkey * Force);
 
     }
 }

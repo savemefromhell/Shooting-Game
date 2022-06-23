@@ -17,29 +17,29 @@ public class PLayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int key = 0,Rkey=0;
+        int key = 0,Rkey = 0;
         if (Input.GetKey(KeyCode.UpArrow)) key = 1;
         if (Input.GetKey(KeyCode.DownArrow)) key = -1;
         if (Input.GetKey(KeyCode.RightArrow)) Rkey = 1;
         if (Input.GetKey(KeyCode.LeftArrow)) Rkey = -1;
 
-        Vector2 PlayerVector = new Vector2(this.rigid2D.velocity.x,this.rigid2D.velocity.y);
+        Vector2 PlayerVector = new Vector2(this.rigid2D.velocity.x, this.rigid2D.velocity.y);
         float speedx = PlayerVector.magnitude;
         Vector2 AddVector = new Vector2(key, Rkey);
         if (maxSpeed < speedx)
         {
-                this.rigid2D.AddForce(-PlayerVector * Force );
+            this.rigid2D.AddForce(-PlayerVector * Force*Time.deltaTime);
         }
         else
         {
-            if(key==0&&Rkey==0)
+            if (key == 0 && Rkey == 0)
             {
-                this.rigid2D.AddForce(-PlayerVector * Force/2);
+                this.rigid2D.AddForce(-PlayerVector * Force / 2 *Time.deltaTime);
             }
-            this.rigid2D.AddForce(AddVector * Force);
- 
-         }
-
+            else
+                this.rigid2D.AddForce(AddVector * Force*Time.deltaTime);
+        }
+    
 
        
     }
