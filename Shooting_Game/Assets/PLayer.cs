@@ -5,8 +5,8 @@ using UnityEngine;
 public class PLayer : MonoBehaviour
 {
     Rigidbody2D rigid2D;
-    float maxSpeed = 0.5f;
-    float Force = 1.0f;
+    float maxSpeed = 5f;
+    float Force = 100.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class PLayer : MonoBehaviour
 
         Vector2 PlayerVector = new Vector2(this.rigid2D.velocity.x, this.rigid2D.velocity.y);
         float speedx = PlayerVector.magnitude;
-        Vector2 AddVector = new Vector2(key, Rkey);
+        Vector2 AddVector = new Vector2(Rkey, key);
         if (maxSpeed < speedx)
         {
             this.rigid2D.AddForce(-PlayerVector * Force*Time.deltaTime);
